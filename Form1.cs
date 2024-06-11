@@ -43,7 +43,7 @@ namespace Puzzle
             for (int i = 0; i < dimension; i++)
             {
                 DataGridViewImageColumn columnaPictureBox = new DataGridViewImageColumn();
-                columnaPictureBox.ImageLayout = DataGridViewImageCellLayout.Stretch; // Ajusta la imagen al tamaño de la celda                
+                columnaPictureBox.ImageLayout = DataGridViewImageCellLayout.Stretch; 
                 dgvImagen.Columns.Add(columnaPictureBox);
 
             }
