@@ -31,13 +31,18 @@ namespace Puzzle
 
             string ruta = string.Empty;
             OpenFileDialog fileDialog = new OpenFileDialog();
+            Image img = null;
 
             if (fileDialog.ShowDialog() == DialogResult.OK)
             {
                 ruta = fileDialog.FileName;
             }
 
-            Image img = Image.FromStream(new FileStream(ruta, FileMode.Open, FileAccess.Read));
+            if (!string.IsNullOrEmpty(ruta))
+            {
+                img = Image.FromStream(new FileStream(ruta, FileMode.Open, FileAccess.Read));
+            }
+
             partida = new Partida(dimension, img);
 
             for (int i = 0; i < dimension; i++)
@@ -54,6 +59,7 @@ namespace Puzzle
                 dgvImagen.Rows.Add();
                 for (int j = 0; j < dimension; j++)
                 {
+                    dgvImagen.BackgroundColor = Color.White;
                     dgvImagen.Rows[i].Cells[j].Value = partida.Celdas[i, j].Img;
                 }
             }
