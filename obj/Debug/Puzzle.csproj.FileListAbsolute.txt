@@ -2,9 +2,10 @@ C:\Users\LUIS CASANOVA\source\repos\Puzzle\bin\Debug\Puzzle.exe.config
 C:\Users\LUIS CASANOVA\source\repos\Puzzle\bin\Debug\Puzzle.exe
 C:\Users\LUIS CASANOVA\source\repos\Puzzle\bin\Debug\Puzzle.pdb
 C:\Users\LUIS CASANOVA\source\repos\Puzzle\obj\Debug\Puzzle.csproj.AssemblyReference.cache
-C:\Users\LUIS CASANOVA\source\repos\Puzzle\obj\Debug\Puzzle.Form1.resources
 C:\Users\LUIS CASANOVA\source\repos\Puzzle\obj\Debug\Puzzle.Properties.Resources.resources
 C:\Users\LUIS CASANOVA\source\repos\Puzzle\obj\Debug\Puzzle.csproj.GenerateResource.cache
 C:\Users\LUIS CASANOVA\source\repos\Puzzle\obj\Debug\Puzzle.csproj.CoreCompileInputs.cache
 C:\Users\LUIS CASANOVA\source\repos\Puzzle\obj\Debug\Puzzle.exe
 C:\Users\LUIS CASANOVA\source\repos\Puzzle\obj\Debug\Puzzle.pdb
+C:\Users\LUIS CASANOVA\source\repos\Puzzle\obj\Debug\Puzzle.FrmJuego.resources
+C:\Users\LUIS CASANOVA\source\repos\Puzzle\obj\Debug\Puzzle.FrmMenu.resources

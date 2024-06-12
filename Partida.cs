@@ -9,22 +9,26 @@ namespace Puzzle
 {
     class Partida
     {
-        int dimension;
-        int [] indice_celda_control;
-
         Celda[,] celdas;
+        int [] pos_celda_control;
+
+        int dimension;
+        bool partida_finalizada;
+
         public Celda[,] Celdas { get { return celdas; } }
-        public int [] Indice_Celda_Control{ get { return indice_celda_control; } }
+        public int [] Pos_celda_control{ get { return pos_celda_control; } }
+        public bool Partida_finalizada { get { return partida_finalizada; } }
 
         public Partida(int dimension, Image img)
-        {
+        {            
             this.dimension = dimension;
             this.celdas = new Celda[dimension, dimension];
 
-            indice_celda_control = new int[2];
+            pos_celda_control = new int[2];
+            partida_finalizada = false;
 
             generarPartida(img);
-            mezclarCeldas();
+            //mezclarCeldas();
         }
 
         private void generarPartida(Image img)
@@ -59,8 +63,8 @@ namespace Puzzle
             }
 
             //A la última celda eliminar los valores que le fueron asignados
-            indice_celda_control[0] = dimension - 1;
-            indice_celda_control[1] = dimension - 1;
+            pos_celda_control[0] = dimension - 1;
+            pos_celda_control[1] = dimension - 1;
 
             //Redefinir los valores de la última celda 
             Bitmap bm = new Bitmap(ancho, alto);
@@ -83,21 +87,21 @@ namespace Puzzle
             celdas[x2, y2] = temp;
 
             //Verificar si los índices equivalen a la celda que esta vacía (control)
-            if (x1 == indice_celda_control[0] && y1 == indice_celda_control[1])
+            if (x1 == pos_celda_control[0] && y1 == pos_celda_control[1])
             {
-                indice_celda_control[0] = x2;
-                indice_celda_control[1] = y2;
+                pos_celda_control[0] = x2;
+                pos_celda_control[1] = y2;
             }
-            else if (x2 == indice_celda_control[0] && y2 == indice_celda_control[1])
+            else if (x2 == pos_celda_control[0] && y2 == pos_celda_control[1])
             {
-                indice_celda_control[0] = x1;
-                indice_celda_control[1] = y1;
+                pos_celda_control[0] = x1;
+                pos_celda_control[1] = y1;
             }
 
             return true;
         }
 
-        private void mezclarCeldas()
+        public void mezclarCeldas()
         {
             //Generar números aleatorios la misma cantidad de celdas existentes
             //para mantener una misma distribución de probabilidad
@@ -132,10 +136,21 @@ namespace Puzzle
             }
             else
             {
-                //Rescalar la imagen
-                int radio = 720 / img.Width;
+                //int nueva_altura;
+                //int nuevo_ancho;
+                //if (img.Width > img.Height)
+                //{
+                //    nuevo_ancho = 750;
+                //    nueva_altura = (int)((float)img.Height / img.Width * 750);
+                //}
+                //else
+                //{
+                //    nuevo_ancho = (int)((float)img.Width / img.Height * 750);
+                //    nueva_altura = 750;
+                //}
 
-                img_procesada = new Bitmap(img, new Size(720, radio * img.Height));
+                //Rescalar la imagen                
+                img_procesada = new Bitmap(img, new Size(240, 240));
             }
 
             return img_procesada;
@@ -161,14 +176,13 @@ namespace Puzzle
 
             return imagen_cortada;
         }
-
         public bool moverArriba()
         {
             bool intercambio = false;
             //Verificar si se pude mover hacia arriba
-            if (indice_celda_control[0] > 0)
+            if (pos_celda_control[0] > 0)
             {
-                intercambio = intercambiar(indice_celda_control[0], indice_celda_control[1], indice_celda_control[0] - 1, indice_celda_control[1]);
+                intercambio = intercambiar(pos_celda_control[0], pos_celda_control[1], pos_celda_control[0] - 1, pos_celda_control[1]);
                 verificarEstado();
             }
 
@@ -178,9 +192,9 @@ namespace Puzzle
         {
             bool intercambio = false;
             //Verificar si se pude mover hacia abajo
-            if (indice_celda_control[0] < dimension - 1)
+            if (pos_celda_control[0] < dimension - 1)
             {
-                intercambio = intercambiar(indice_celda_control[0], indice_celda_control[1], indice_celda_control[0] + 1, indice_celda_control[1]);
+                intercambio = intercambiar(pos_celda_control[0], pos_celda_control[1], pos_celda_control[0] + 1, pos_celda_control[1]);
                 verificarEstado();
             }
 
@@ -190,9 +204,9 @@ namespace Puzzle
         {
             bool intercambio = false;
             //Verificar si se pude mover hacia la izquierda
-            if (indice_celda_control[1] > 0)
+            if (pos_celda_control[1] > 0)
             {
-                intercambio = intercambiar(indice_celda_control[0], indice_celda_control[1], indice_celda_control[0], indice_celda_control[1] - 1);
+                intercambio = intercambiar(pos_celda_control[0], pos_celda_control[1], pos_celda_control[0], pos_celda_control[1] - 1);
                 verificarEstado();
             }
 
@@ -202,9 +216,9 @@ namespace Puzzle
         {
             bool intercambio = false;
             //Verificar si se pude mover hacia la derecha
-            if (indice_celda_control[1] < dimension - 1)
+            if (pos_celda_control[1] < dimension - 1)
             {
-                intercambio =  intercambiar(indice_celda_control[0], indice_celda_control[1], indice_celda_control[0], indice_celda_control[1] + 1);
+                intercambio =  intercambiar(pos_celda_control[0], pos_celda_control[1], pos_celda_control[0], pos_celda_control[1] + 1);
                 verificarEstado();
             }
 
@@ -213,7 +227,6 @@ namespace Puzzle
         private bool verificarEstado()
         {
             int contador = 0;
-            bool juego_finalizado = false;
 
             for (int i = 0; i < dimension; i++)
             {
@@ -223,8 +236,8 @@ namespace Puzzle
                     //y por lo tanto ganó el juego
                     if (i == dimension - 1 && j == dimension - 1)
                     {
-                        juego_finalizado = true;
-                        continue;
+                        partida_finalizada = true;
+                        return partida_finalizada;
                     }
 
                     if (celdas[i, j].Indice != contador)
@@ -236,12 +249,7 @@ namespace Puzzle
                 }
             }
 
-            if (juego_finalizado)
-            {
-                System.Windows.Forms.MessageBox.Show("Felicidades, ha finalizado el juego");
-            }
-
-            return juego_finalizado;
+            return partida_finalizada;
         }
     }
 }
