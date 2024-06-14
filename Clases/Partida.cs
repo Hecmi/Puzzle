@@ -27,16 +27,16 @@ namespace Puzzle
             pos_celda_control = new int[2];
             partida_finalizada = false;
 
-            generarPartida(img);
-            mezclarCeldas();
+            generar_partida(img);
+            mezclar_celdas();
         }
 
-        private void generarPartida(Image img)
+        private void generar_partida(Image img)
         {
             bool imagen_nula = img == null;
 
             //Procesar la imagen por si es nula
-            img = procesarImagen(img);
+            img = procesar_imagen(img);
 
             //Obtener las dimensiones de la imagen
             int alto_img = img.Height;
@@ -54,7 +54,7 @@ namespace Puzzle
                     Image img_cortada;
 
                     string texto_imagen = imagen_nula ? (contador + 1).ToString() : string.Empty;
-                    img_cortada = cortarImagen(img, j * ancho, i * alto, ancho, alto, texto_imagen);
+                    img_cortada = cortar_imagen(img, j * ancho, i * alto, ancho, alto, texto_imagen);
 
                     //Crear el nuevo objeto de tipo celda
                     celdas[i, j] = new Celda(contador, img_cortada);
@@ -105,7 +105,7 @@ namespace Puzzle
             return true;
         }
 
-        public void mezclarCeldas()
+        private void mezclar_celdas()
         {
             //Generar números aleatorios la misma cantidad de celdas existentes
             //para mantener una misma distribución de probabilidad
@@ -124,7 +124,7 @@ namespace Puzzle
             }
         }
 
-        private Image procesarImagen(Image img)
+        private Image procesar_imagen(Image img)
         {
             Bitmap img_procesada = null;
 
@@ -159,7 +159,7 @@ namespace Puzzle
 
             return img_procesada;
         }       
-        private Image cortarImagen(Image img, int x, int y, int ancho, int alto, string texto)
+        private Image cortar_imagen(Image img, int x, int y, int ancho, int alto, string texto)
         {
             //Crear un mapa de bits del ancho y alto determinado para la celda
             Bitmap imagen_cortada = new Bitmap(ancho, alto);
@@ -184,55 +184,55 @@ namespace Puzzle
 
             return imagen_cortada;
         }
-        public bool moverArriba()
+        public bool mover_arriba()
         {
             bool intercambio = false;
             //Verificar si se pude mover hacia arriba
             if (pos_celda_control[0] > 0)
             {
                 intercambio = intercambiar(pos_celda_control[0], pos_celda_control[1], pos_celda_control[0] - 1, pos_celda_control[1]);
-                verificarEstado();
+                verificar_estado();
             }
 
             return intercambio;
         }
-        public bool moverAbajo()
+        public bool mover_abajo()
         {
             bool intercambio = false;
             //Verificar si se pude mover hacia abajo
             if (pos_celda_control[0] < dimension - 1)
             {
                 intercambio = intercambiar(pos_celda_control[0], pos_celda_control[1], pos_celda_control[0] + 1, pos_celda_control[1]);
-                verificarEstado();
+                verificar_estado();
             }
 
             return intercambio;
         }
-        public bool moverIzquierda()
+        public bool mover_izquierda()
         {
             bool intercambio = false;
             //Verificar si se pude mover hacia la izquierda
             if (pos_celda_control[1] > 0)
             {
                 intercambio = intercambiar(pos_celda_control[0], pos_celda_control[1], pos_celda_control[0], pos_celda_control[1] - 1);
-                verificarEstado();
+                verificar_estado();
             }
 
             return intercambio; 
         }
-        public bool moverDerecha()
+        public bool mover_derecha()
         {
             bool intercambio = false;
             //Verificar si se pude mover hacia la derecha
             if (pos_celda_control[1] < dimension - 1)
             {
                 intercambio =  intercambiar(pos_celda_control[0], pos_celda_control[1], pos_celda_control[0], pos_celda_control[1] + 1);
-                verificarEstado();
+                verificar_estado();
             }
 
             return intercambio;
         }
-        private bool verificarEstado()
+        private bool verificar_estado()
         {
             int contador = 0;
 

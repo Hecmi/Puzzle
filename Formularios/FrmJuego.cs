@@ -68,19 +68,19 @@ namespace Puzzle
 
             if (e.KeyValue == 38) //Arriba
             {
-                existe_cambio = MOVER_CELDA ? partida.moverArriba() : partida.moverAbajo();
+                existe_cambio = MOVER_CELDA ? partida.mover_arriba() : partida.mover_abajo();
             }
             else if (e.KeyValue == 40) //Abajo
             {
-                existe_cambio = MOVER_CELDA ? partida.moverAbajo() : partida.moverArriba();
+                existe_cambio = MOVER_CELDA ? partida.mover_abajo() : partida.mover_arriba();
             }
             else if (e.KeyValue == 37) //Izquierda
             {
-                existe_cambio = MOVER_CELDA ? partida.moverIzquierda() : partida.moverDerecha();
+                existe_cambio = MOVER_CELDA ? partida.mover_izquierda() : partida.mover_derecha();
             }
             else if (e.KeyValue == 39) //Derecha
             {
-                existe_cambio = MOVER_CELDA ? partida.moverDerecha() : partida.moverIzquierda();
+                existe_cambio = MOVER_CELDA ? partida.mover_derecha() : partida.mover_izquierda();
             }
 
             if (existe_cambio)

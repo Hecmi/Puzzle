@@ -29,7 +29,7 @@ namespace Puzzle
         public Jugador obtener_o_registrar()
         {
             //Crear el archivo si no existe y buscar el jugador a registrar
-            Jugador jugador = get_jugador_nombre(nombre_jugador);
+            Jugador jugador = get_jugador_por_nombre(nombre_jugador);
 
             //Jugador no encontrado
             if (jugador != null)
@@ -140,7 +140,7 @@ namespace Puzzle
             fs.Close();
             return lstJugadorModel;
         }
-        public static Jugador get_jugador_nombre(string nombre)
+        public static Jugador get_jugador_por_nombre(string nombre)
         {
             Jugador jugador = null;
             FileStream fs = new FileStream("jugador.txt", FileMode.OpenOrCreate, FileAccess.Read);
