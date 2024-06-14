@@ -17,6 +17,7 @@ namespace Puzzle
 
         Partida partida;
         Image img;
+        bool MOVER_CELDA;
 
         int dimension;
         public FrmJuego(Jugador jugador)
@@ -35,17 +36,24 @@ namespace Puzzle
             dgvImagen.BackgroundColor = Color.White;
             dgvImagen.Enabled = false;
 
+            MOVER_CELDA = true;
+
             //Cargar las opciones de dimensiones en el combobox
-            for(int i = 4; i < 8; i++)
+            for (int i = 4; i < 8; i++)
             {
                 cmbDimension.Items.Add(i);
             }
 
-            //Colocar un valor por defecto en el combobox.
+            //Cargar los modos            
+            cmbModo.Items.Add("Celda");
+            cmbModo.Items.Add("Vecinos");
+
+            //Colocar un valor por defecto en los combobox.
             cmbDimension.SelectedIndex = 0;
+            cmbModo.SelectedIndex = 0;
 
             //Cargar los datos del jugador
-            txtJugador.Text = jugador.nombre_jugador;
+            lblJugador.Text = jugador.nombre_jugador;
             lblNumPartidasGanadas.Text = jugador.partidas_ganadas.ToString();
         }
 
@@ -58,21 +66,21 @@ namespace Puzzle
             int x1 = partida.Pos_celda_control[0];
             int y1 = partida.Pos_celda_control[1];
 
-            if (e.KeyValue == 38)
+            if (e.KeyValue == 38) //Arriba
             {
-                existe_cambio = partida.moverArriba();
+                existe_cambio = MOVER_CELDA ? partida.moverArriba() : partida.moverAbajo();
             }
-            else if (e.KeyValue == 40)
+            else if (e.KeyValue == 40) //Abajo
             {
-                existe_cambio = partida.moverAbajo();
+                existe_cambio = MOVER_CELDA ? partida.moverAbajo() : partida.moverArriba();
             }
-            else if (e.KeyValue == 37)
+            else if (e.KeyValue == 37) //Izquierda
             {
-                existe_cambio = partida.moverIzquierda();
+                existe_cambio = MOVER_CELDA ? partida.moverIzquierda() : partida.moverDerecha();
             }
-            else if (e.KeyValue == 39)
+            else if (e.KeyValue == 39) //Derecha
             {
-                existe_cambio = partida.moverDerecha();
+                existe_cambio = MOVER_CELDA ? partida.moverDerecha() : partida.moverIzquierda();
             }
 
             if (existe_cambio)
@@ -112,42 +120,18 @@ namespace Puzzle
 
             //Cargar los parámetros para la partida
             dimension = int.Parse(cmbDimension.SelectedItem.ToString());
+            MOVER_CELDA = cmbModo.SelectedIndex == 0 ? true : false;
 
             //Crear la partida con los datos establecidos por el usuario
             partida = new Partida(dimension, img);
 
             cargarCeldasEnDgv(dimension);
-
-            //Cargar las imágenes
-            for (int i = 0; i < dimension; i++)
-            {
-                for (int j = 0; j < dimension; j++)
-                {
-                    dgvImagen.BackgroundColor = Color.White;
-                    dgvImagen.Rows[i].Cells[j].Value = partida.Celdas[i, j].Img;
-                }
-            }
         }
-
-        private void btnMezclar_Click(object sender, EventArgs e)
-        {
-            partida.mezclarCeldas();
-            //Cargar las imágenes
-            for (int i = 0; i < dimension; i++)
-            {
-                for (int j = 0; j < dimension; j++)
-                {
-                    dgvImagen.BackgroundColor = Color.White;
-                    dgvImagen.Rows[i].Cells[j].Value = partida.Celdas[i, j].Img;
-                }
-            }
-        }
-
         private void btnImagen_Click(object sender, EventArgs e)
         {
             string ruta = string.Empty;
             OpenFileDialog fileDialog = new OpenFileDialog();
-            fileDialog.Filter = "Archivos de imagen JPG (*.jpg)|*.jpg";
+            fileDialog.Filter = "Archivos de imagen|*.jpg;*.jpeg;*;*.bmp;*.svg|Archivos JPG (*.jpg;*.jpeg)|*.jpg;*.jpeg|Archivos BMP (*.bmp)|*.bmp|Archivos SVG (*.svg)|*.svg";
             img = null;
 
             if (fileDialog.ShowDialog() == DialogResult.OK)
@@ -158,6 +142,7 @@ namespace Puzzle
             if (!string.IsNullOrEmpty(ruta))
             {
                 img = Image.FromStream(new FileStream(ruta, FileMode.Open, FileAccess.Read));
+                pbImagenSeleccionada.BackgroundImage = img;
             }
         }
 
@@ -178,7 +163,7 @@ namespace Puzzle
                 dgvImagen.Columns[indice_columna].Width = dgvImagen.Width / dimension - 1;
             }
 
-            //Cargar las imágenes
+            //Agregar las filas en cada columna
             for (int i = 0; i < dimension; i++)
             {
                 int indice_fila = dgvImagen.Rows.Add();
@@ -186,6 +171,42 @@ namespace Puzzle
                 //Calcular el alto de las filas considerando las dimensiones
                 dgvImagen.Rows[indice_fila].Height = dgvImagen.Height / dimension - 1;
             }
+
+            //Cargar las imágenes de la partida
+            for (int i = 0; i < dimension; i++)
+            {
+                for (int j = 0; j < dimension; j++)
+                {
+                    dgvImagen.BackgroundColor = Color.White;
+                    dgvImagen.Rows[i].Cells[j].Value = partida.Celdas[i, j].Img;
+                }
+            }
+        }
+
+        private void FrmJuego_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            FrmMenu.frmMenu.Show();
+        }
+
+        private void pnlOpciones_Paint(object sender, PaintEventArgs e)
+        {
+            //Definir los parámetros de dibujo pará las líneas
+            Color color_borde = Color.FromArgb(200, 200, 200);
+
+            //Lapices para dibujar los bordes (aumentar uno a la izquierda y abajo por que pinta mal windows forms (? )
+            Pen lapiz_tl = new Pen(color_borde, 1);
+            Pen lapiz_dr = new Pen(color_borde, 2);
+
+            //Obtener el espacio que ocupa el control
+            Rectangle rect = ((Control)(sender)).ClientRectangle;
+
+            //Dibujar la línea derecha del control
+            e.Graphics.DrawLine(lapiz_tl, rect.Left, rect.Top, rect.Left, rect.Bottom);
+        }
+
+        private void FrmJuego_Resize(object sender, EventArgs e)
+        {
+            cargarCeldasEnDgv(dimension);
         }
     }
 }

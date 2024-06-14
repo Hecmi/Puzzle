@@ -11,25 +11,22 @@ namespace Puzzle
     {
         public int id;
         public string nombre_jugador;
-        public int partidas_jugadas;
         public int partidas_ganadas;
 
-        public Jugador(int id, string nombre_jugador, int partidas_jugadas, int partidas_ganadas)
+        public Jugador(int id, string nombre_jugador, int partidas_ganadas)
         {
             this.id = id;
             this.nombre_jugador = nombre_jugador;
-            this.partidas_jugadas = partidas_jugadas;
             this.partidas_ganadas = partidas_ganadas;
         }
         public Jugador(string nombre_jugador)
         {
             this.id = -1;
             this.nombre_jugador = nombre_jugador;
-            this.partidas_jugadas = 0;
             this.partidas_ganadas = 0;
         }
 
-        public Jugador registrar_jugador()
+        public Jugador obtener_o_registrar()
         {
             //Crear el archivo si no existe y buscar el jugador a registrar
             Jugador jugador = get_jugador_nombre(nombre_jugador);
@@ -41,7 +38,7 @@ namespace Puzzle
             }
 
             //Para crear el jugador, primero obtener el máximo id y sumarle 1
-            int nuevo_id = getMaxId() + 1;
+            int nuevo_id = getMaxId() + 1 == 0 ? 1 : getMaxId() + 1;
 
             //Abrir el archivo en modo de concatenación y de escritura
             FileStream fs = new FileStream("jugador.txt", FileMode.Append, FileAccess.Write);
@@ -49,8 +46,13 @@ namespace Puzzle
             //Abrir el escritor de texto
             StreamWriter writer = new StreamWriter(fs);
 
-            //Escribir los datos del jugador (id, nombre_jugador, partidas_jugadas, partidas_ganadas)
-            writer.WriteLine($"{nuevo_id},{this.nombre_jugador},{0},{0}");
+            //Establecer los valores del jugador a crearse
+            this.id = nuevo_id;            
+            this.partidas_ganadas = 0;
+
+            //Escribir los datos del jugador (id, nombre_jugador, partidas_ganadas)
+            writer.WriteLine(this.ToString());
+
 
             //Cerrar el archivo
             writer.Close();
@@ -82,7 +84,6 @@ namespace Puzzle
                 if (this.id == lstjugadores[i].id)
                 {
                     lstjugadores[i].nombre_jugador = this.nombre_jugador;
-                    lstjugadores[i].partidas_jugadas = this.partidas_jugadas;
                     lstjugadores[i].partidas_ganadas = this.partidas_ganadas;
                 }
 
@@ -129,46 +130,15 @@ namespace Puzzle
 
                 int id_jugador = int.Parse(vector[0]);
                 string nombre_jugador = vector[1];
-                int partidas_jugadas = int.Parse(vector[2]);
-                int partidas_ganadas = int.Parse(vector[3]);
+                int partidas_ganadas = int.Parse(vector[2]);
 
-                Jugador jugador = new Jugador(id_jugador, nombre_jugador, partidas_jugadas, partidas_ganadas);
+                Jugador jugador = new Jugador(id_jugador, nombre_jugador, partidas_ganadas);
                 lstJugadorModel.Add(jugador);
             }
 
             reader.Close();
             fs.Close();
             return lstJugadorModel;
-        }
-        private Jugador get_jugador_id(int id)
-        {
-            Jugador jugador = null;
-            FileStream fs = new FileStream("jugador.txt", FileMode.OpenOrCreate, FileAccess.Read);
-
-            StreamReader reader = new StreamReader(fs);
-            string linea = string.Empty;
-
-            while ((linea = reader.ReadLine()) != null)
-            {
-                string[] vector = linea.Split(',');
-
-                int id_jugador = int.Parse(vector[0]);
-
-                if (id == id_jugador)
-                {
-                    string nombre_jugador = vector[1];
-                    int partidas_jugadas = int.Parse(vector[2]);
-                    int partidas_ganadas = int.Parse(vector[3]);
-
-                    jugador = new Jugador(id_jugador, nombre_jugador, partidas_jugadas, partidas_ganadas);
-                }
-            }
-
-            //Cerrar el archivo
-            reader.Close();
-            fs.Close();
-
-            return jugador;
         }
         public static Jugador get_jugador_nombre(string nombre)
         {
@@ -187,10 +157,9 @@ namespace Puzzle
                 if (nombre_jugador == nombre)
                 {
                     int id_jugador = int.Parse(vector[0]);                    
-                    int partidas_jugadas = int.Parse(vector[2]);
-                    int partidas_ganadas = int.Parse(vector[3]);
+                    int partidas_ganadas = int.Parse(vector[2]);
 
-                    jugador = new Jugador(id_jugador, nombre_jugador, partidas_jugadas, partidas_ganadas);
+                    jugador = new Jugador(id_jugador, nombre_jugador, partidas_ganadas);
                     break;
                 }
             }
@@ -230,7 +199,7 @@ namespace Puzzle
         }
         public override string ToString()
         {
-            return $"{id},{nombre_jugador},{partidas_jugadas},{partidas_ganadas}";
+            return $"{id},{nombre_jugador},{partidas_ganadas}";
         }
     }
 }

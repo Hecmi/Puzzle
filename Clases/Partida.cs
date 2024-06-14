@@ -66,11 +66,15 @@ namespace Puzzle
             pos_celda_control[0] = dimension - 1;
             pos_celda_control[1] = dimension - 1;
 
-            //Redefinir los valores de la última celda 
+            //Dibujar una imagen blanco con un borde más grueso para notar
+            //que es la celda de control
             Bitmap bm = new Bitmap(ancho, alto);
             Graphics g = Graphics.FromImage(bm);
+            Rectangle borde = new Rectangle(0, 0, ancho - 1, alto - 1);
             g.Clear(Color.White);
+            g.DrawRectangle(new Pen(Color.Black, 2), borde);
 
+            //Redefinir los valores de la última celda 
             Celda celda_control = celdas[dimension - 1, dimension - 1];
             celda_control.Img = bm;
             celda_control.Indice = -1;
@@ -160,7 +164,11 @@ namespace Puzzle
             //Crear un mapa de bits del ancho y alto determinado para la celda
             Bitmap imagen_cortada = new Bitmap(ancho, alto);
             Graphics graphics = Graphics.FromImage(imagen_cortada);
-           
+
+            //Crear en el mapa de bits un rectángulo blanco por si la imágen está en formato png
+            //(es decir, eliminar rellenar los bits con un valor de alfa de 0)
+            graphics.FillRectangle(Brushes.White, 0, 0, ancho, alto);
+
             //Establecer el punto donde empieza y termina la imágen recortada
             Rectangle origen = new Rectangle(x, y, ancho, alto);
             Rectangle destino = new Rectangle(0, 0, ancho, alto);
@@ -210,7 +218,7 @@ namespace Puzzle
                 verificarEstado();
             }
 
-            return intercambio;
+            return intercambio; 
         }
         public bool moverDerecha()
         {
