@@ -45,8 +45,8 @@ namespace Puzzle
             }
 
             //Cargar los modos            
-            cmbModo.Items.Add("Celda");
-            cmbModo.Items.Add("Vecinos");
+            cmbModo.Items.Add("Celda vacía");
+            cmbModo.Items.Add("Vecinos a celda");
 
             //Colocar un valor por defecto en los combobox.
             cmbDimension.SelectedIndex = 0;

@@ -31,19 +31,19 @@ namespace Puzzle
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmMenu));
             this.pnlImagen = new System.Windows.Forms.Panel();
+            this.pnlLogo = new System.Windows.Forms.Panel();
+            this.pbLogo = new System.Windows.Forms.PictureBox();
+            this.pnlNombreJuego = new System.Windows.Forms.Panel();
+            this.lblTitulo = new System.Windows.Forms.Label();
             this.pnlInicio = new System.Windows.Forms.Panel();
             this.lblJugador = new System.Windows.Forms.Label();
             this.txtUsuario = new System.Windows.Forms.TextBox();
             this.btnIniciar = new System.Windows.Forms.Button();
-            this.pbLogo = new System.Windows.Forms.PictureBox();
-            this.pnlNombreJuego = new System.Windows.Forms.Panel();
-            this.pnlLogo = new System.Windows.Forms.Panel();
-            this.lblTitulo = new System.Windows.Forms.Label();
             this.pnlImagen.SuspendLayout();
-            this.pnlInicio.SuspendLayout();
+            this.pnlLogo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbLogo)).BeginInit();
             this.pnlNombreJuego.SuspendLayout();
-            this.pnlLogo.SuspendLayout();
+            this.pnlInicio.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnlImagen
@@ -55,6 +55,48 @@ namespace Puzzle
             this.pnlImagen.Name = "pnlImagen";
             this.pnlImagen.Size = new System.Drawing.Size(434, 305);
             this.pnlImagen.TabIndex = 0;
+            // 
+            // pnlLogo
+            // 
+            this.pnlLogo.Controls.Add(this.pbLogo);
+            this.pnlLogo.Dock = System.Windows.Forms.DockStyle.Top;
+            this.pnlLogo.Location = new System.Drawing.Point(0, 0);
+            this.pnlLogo.Name = "pnlLogo";
+            this.pnlLogo.Padding = new System.Windows.Forms.Padding(5);
+            this.pnlLogo.Size = new System.Drawing.Size(434, 245);
+            this.pnlLogo.TabIndex = 2;
+            // 
+            // pbLogo
+            // 
+            this.pbLogo.BackgroundImage = global::Puzzle.Properties.Resources.puzzle;
+            this.pbLogo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.pbLogo.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pbLogo.Location = new System.Drawing.Point(5, 5);
+            this.pbLogo.Name = "pbLogo";
+            this.pbLogo.Size = new System.Drawing.Size(424, 235);
+            this.pbLogo.TabIndex = 0;
+            this.pbLogo.TabStop = false;
+            // 
+            // pnlNombreJuego
+            // 
+            this.pnlNombreJuego.Controls.Add(this.lblTitulo);
+            this.pnlNombreJuego.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnlNombreJuego.Location = new System.Drawing.Point(0, 0);
+            this.pnlNombreJuego.Name = "pnlNombreJuego";
+            this.pnlNombreJuego.Size = new System.Drawing.Size(434, 305);
+            this.pnlNombreJuego.TabIndex = 1;
+            // 
+            // lblTitulo
+            // 
+            this.lblTitulo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblTitulo.AutoSize = true;
+            this.lblTitulo.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTitulo.Location = new System.Drawing.Point(162, 260);
+            this.lblTitulo.Name = "lblTitulo";
+            this.lblTitulo.Size = new System.Drawing.Size(125, 31);
+            this.lblTitulo.TabIndex = 13;
+            this.lblTitulo.Text = "PUZZLE";
             // 
             // pnlInicio
             // 
@@ -76,9 +118,9 @@ namespace Puzzle
             this.lblJugador.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblJugador.Location = new System.Drawing.Point(51, 30);
             this.lblJugador.Name = "lblJugador";
-            this.lblJugador.Size = new System.Drawing.Size(83, 20);
+            this.lblJugador.Size = new System.Drawing.Size(71, 20);
             this.lblJugador.TabIndex = 12;
-            this.lblJugador.Text = "Nickname:";
+            this.lblJugador.Text = "Jugador:";
             // 
             // txtUsuario
             // 
@@ -104,48 +146,6 @@ namespace Puzzle
             this.btnIniciar.UseVisualStyleBackColor = true;
             this.btnIniciar.Click += new System.EventHandler(this.btnIniciar_Click);
             // 
-            // pbLogo
-            // 
-            this.pbLogo.BackgroundImage = global::Puzzle.Properties.Resources.puzzle;
-            this.pbLogo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.pbLogo.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pbLogo.Location = new System.Drawing.Point(5, 5);
-            this.pbLogo.Name = "pbLogo";
-            this.pbLogo.Size = new System.Drawing.Size(424, 235);
-            this.pbLogo.TabIndex = 0;
-            this.pbLogo.TabStop = false;
-            // 
-            // pnlNombreJuego
-            // 
-            this.pnlNombreJuego.Controls.Add(this.lblTitulo);
-            this.pnlNombreJuego.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlNombreJuego.Location = new System.Drawing.Point(0, 0);
-            this.pnlNombreJuego.Name = "pnlNombreJuego";
-            this.pnlNombreJuego.Size = new System.Drawing.Size(434, 305);
-            this.pnlNombreJuego.TabIndex = 1;
-            // 
-            // pnlLogo
-            // 
-            this.pnlLogo.Controls.Add(this.pbLogo);
-            this.pnlLogo.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnlLogo.Location = new System.Drawing.Point(0, 0);
-            this.pnlLogo.Name = "pnlLogo";
-            this.pnlLogo.Padding = new System.Windows.Forms.Padding(5);
-            this.pnlLogo.Size = new System.Drawing.Size(434, 245);
-            this.pnlLogo.TabIndex = 2;
-            // 
-            // lblTitulo
-            // 
-            this.lblTitulo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblTitulo.AutoSize = true;
-            this.lblTitulo.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTitulo.Location = new System.Drawing.Point(162, 260);
-            this.lblTitulo.Name = "lblTitulo";
-            this.lblTitulo.Size = new System.Drawing.Size(125, 31);
-            this.lblTitulo.TabIndex = 13;
-            this.lblTitulo.Text = "PUZZLE";
-            // 
             // FrmMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -162,12 +162,12 @@ namespace Puzzle
             this.Text = "Menú";
             this.Load += new System.EventHandler(this.FrmMenu_Load);
             this.pnlImagen.ResumeLayout(false);
-            this.pnlInicio.ResumeLayout(false);
-            this.pnlInicio.PerformLayout();
+            this.pnlLogo.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pbLogo)).EndInit();
             this.pnlNombreJuego.ResumeLayout(false);
             this.pnlNombreJuego.PerformLayout();
-            this.pnlLogo.ResumeLayout(false);
+            this.pnlInicio.ResumeLayout(false);
+            this.pnlInicio.PerformLayout();
             this.ResumeLayout(false);
 
         }

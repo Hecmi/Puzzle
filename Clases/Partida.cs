@@ -28,7 +28,7 @@ namespace Puzzle
             partida_finalizada = false;
 
             generarPartida(img);
-            //mezclarCeldas();
+            mezclarCeldas();
         }
 
         private void generarPartida(Image img)

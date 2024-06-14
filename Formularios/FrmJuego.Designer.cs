@@ -32,23 +32,23 @@ namespace Puzzle
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmJuego));
             this.dgvImagen = new System.Windows.Forms.DataGridView();
             this.pnlOpciones = new System.Windows.Forms.Panel();
+            this.lblNumPartidasGanadas = new System.Windows.Forms.Label();
+            this.cmbModo = new System.Windows.Forms.ComboBox();
+            this.lblPartidasGanadas = new System.Windows.Forms.Label();
+            this.lblModo = new System.Windows.Forms.Label();
+            this.lblJugador = new System.Windows.Forms.Label();
+            this.lblImagenSeleccionada = new System.Windows.Forms.Label();
+            this.pbImagenSeleccionada = new System.Windows.Forms.PictureBox();
             this.btnImagen = new System.Windows.Forms.Button();
             this.cmbDimension = new System.Windows.Forms.ComboBox();
-            this.lblNumPartidasGanadas = new System.Windows.Forms.Label();
-            this.lblPartidasGanadas = new System.Windows.Forms.Label();
             this.lblNombreJugador = new System.Windows.Forms.Label();
             this.lblDimension = new System.Windows.Forms.Label();
             this.btnJugar = new System.Windows.Forms.Button();
             this.pnlJuego = new System.Windows.Forms.Panel();
-            this.lblImagenSeleccionada = new System.Windows.Forms.Label();
-            this.cmbModo = new System.Windows.Forms.ComboBox();
-            this.lblModo = new System.Windows.Forms.Label();
-            this.lblJugador = new System.Windows.Forms.Label();
-            this.pbImagenSeleccionada = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvImagen)).BeginInit();
             this.pnlOpciones.SuspendLayout();
-            this.pnlJuego.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbImagenSeleccionada)).BeginInit();
+            this.pnlJuego.SuspendLayout();
             this.SuspendLayout();
             // 
             // dgvImagen
@@ -88,6 +88,83 @@ namespace Puzzle
             this.pnlOpciones.TabIndex = 1;
             this.pnlOpciones.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlOpciones_Paint);
             // 
+            // lblNumPartidasGanadas
+            // 
+            this.lblNumPartidasGanadas.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblNumPartidasGanadas.AutoSize = true;
+            this.lblNumPartidasGanadas.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblNumPartidasGanadas.Location = new System.Drawing.Point(301, 128);
+            this.lblNumPartidasGanadas.Name = "lblNumPartidasGanadas";
+            this.lblNumPartidasGanadas.Size = new System.Drawing.Size(18, 20);
+            this.lblNumPartidasGanadas.TabIndex = 11;
+            this.lblNumPartidasGanadas.Text = "0";
+            this.lblNumPartidasGanadas.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // cmbModo
+            // 
+            this.cmbModo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.cmbModo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbModo.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbModo.FormattingEnabled = true;
+            this.cmbModo.Location = new System.Drawing.Point(189, 56);
+            this.cmbModo.Name = "cmbModo";
+            this.cmbModo.Size = new System.Drawing.Size(130, 26);
+            this.cmbModo.TabIndex = 13;
+            // 
+            // lblPartidasGanadas
+            // 
+            this.lblPartidasGanadas.AutoSize = true;
+            this.lblPartidasGanadas.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPartidasGanadas.Location = new System.Drawing.Point(19, 128);
+            this.lblPartidasGanadas.Name = "lblPartidasGanadas";
+            this.lblPartidasGanadas.Size = new System.Drawing.Size(137, 20);
+            this.lblPartidasGanadas.TabIndex = 10;
+            this.lblPartidasGanadas.Text = "Partidas ganadas:";
+            // 
+            // lblModo
+            // 
+            this.lblModo.AutoSize = true;
+            this.lblModo.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblModo.Location = new System.Drawing.Point(19, 62);
+            this.lblModo.Name = "lblModo";
+            this.lblModo.Size = new System.Drawing.Size(127, 20);
+            this.lblModo.TabIndex = 12;
+            this.lblModo.Text = "Modo de control:";
+            // 
+            // lblJugador
+            // 
+            this.lblJugador.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblJugador.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblJugador.Location = new System.Drawing.Point(192, 92);
+            this.lblJugador.Name = "lblJugador";
+            this.lblJugador.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.lblJugador.Size = new System.Drawing.Size(127, 20);
+            this.lblJugador.TabIndex = 12;
+            this.lblJugador.Text = "Nombre Jugador";
+            this.lblJugador.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // lblImagenSeleccionada
+            // 
+            this.lblImagenSeleccionada.AutoSize = true;
+            this.lblImagenSeleccionada.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblImagenSeleccionada.Location = new System.Drawing.Point(19, 177);
+            this.lblImagenSeleccionada.Name = "lblImagenSeleccionada";
+            this.lblImagenSeleccionada.Size = new System.Drawing.Size(164, 20);
+            this.lblImagenSeleccionada.TabIndex = 11;
+            this.lblImagenSeleccionada.Text = "Imagen seleccionada:";
+            // 
+            // pbImagenSeleccionada
+            // 
+            this.pbImagenSeleccionada.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.pbImagenSeleccionada.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.pbImagenSeleccionada.Location = new System.Drawing.Point(23, 211);
+            this.pbImagenSeleccionada.Name = "pbImagenSeleccionada";
+            this.pbImagenSeleccionada.Size = new System.Drawing.Size(296, 146);
+            this.pbImagenSeleccionada.TabIndex = 10;
+            this.pbImagenSeleccionada.TabStop = false;
+            // 
             // btnImagen
             // 
             this.btnImagen.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
@@ -112,28 +189,6 @@ namespace Puzzle
             this.cmbDimension.Name = "cmbDimension";
             this.cmbDimension.Size = new System.Drawing.Size(130, 26);
             this.cmbDimension.TabIndex = 8;
-            // 
-            // lblNumPartidasGanadas
-            // 
-            this.lblNumPartidasGanadas.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblNumPartidasGanadas.AutoSize = true;
-            this.lblNumPartidasGanadas.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNumPartidasGanadas.Location = new System.Drawing.Point(301, 128);
-            this.lblNumPartidasGanadas.Name = "lblNumPartidasGanadas";
-            this.lblNumPartidasGanadas.Size = new System.Drawing.Size(18, 20);
-            this.lblNumPartidasGanadas.TabIndex = 11;
-            this.lblNumPartidasGanadas.Text = "0";
-            this.lblNumPartidasGanadas.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // lblPartidasGanadas
-            // 
-            this.lblPartidasGanadas.AutoSize = true;
-            this.lblPartidasGanadas.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPartidasGanadas.Location = new System.Drawing.Point(19, 128);
-            this.lblPartidasGanadas.Name = "lblPartidasGanadas";
-            this.lblPartidasGanadas.Size = new System.Drawing.Size(137, 20);
-            this.lblPartidasGanadas.TabIndex = 10;
-            this.lblPartidasGanadas.Text = "Partidas ganadas:";
             // 
             // lblNombreJugador
             // 
@@ -179,61 +234,6 @@ namespace Puzzle
             this.pnlJuego.Size = new System.Drawing.Size(495, 491);
             this.pnlJuego.TabIndex = 2;
             // 
-            // lblImagenSeleccionada
-            // 
-            this.lblImagenSeleccionada.AutoSize = true;
-            this.lblImagenSeleccionada.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblImagenSeleccionada.Location = new System.Drawing.Point(19, 177);
-            this.lblImagenSeleccionada.Name = "lblImagenSeleccionada";
-            this.lblImagenSeleccionada.Size = new System.Drawing.Size(164, 20);
-            this.lblImagenSeleccionada.TabIndex = 11;
-            this.lblImagenSeleccionada.Text = "Imagen seleccionada:";
-            // 
-            // cmbModo
-            // 
-            this.cmbModo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.cmbModo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbModo.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbModo.FormattingEnabled = true;
-            this.cmbModo.Location = new System.Drawing.Point(189, 56);
-            this.cmbModo.Name = "cmbModo";
-            this.cmbModo.Size = new System.Drawing.Size(130, 26);
-            this.cmbModo.TabIndex = 13;
-            // 
-            // lblModo
-            // 
-            this.lblModo.AutoSize = true;
-            this.lblModo.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblModo.Location = new System.Drawing.Point(19, 62);
-            this.lblModo.Name = "lblModo";
-            this.lblModo.Size = new System.Drawing.Size(122, 20);
-            this.lblModo.TabIndex = 12;
-            this.lblModo.Text = "Modo de juego: ";
-            // 
-            // lblJugador
-            // 
-            this.lblJugador.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblJugador.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblJugador.Location = new System.Drawing.Point(192, 92);
-            this.lblJugador.Name = "lblJugador";
-            this.lblJugador.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.lblJugador.Size = new System.Drawing.Size(127, 20);
-            this.lblJugador.TabIndex = 12;
-            this.lblJugador.Text = "Nombre Jugador";
-            this.lblJugador.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // pbImagenSeleccionada
-            // 
-            this.pbImagenSeleccionada.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.pbImagenSeleccionada.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.pbImagenSeleccionada.Location = new System.Drawing.Point(23, 211);
-            this.pbImagenSeleccionada.Name = "pbImagenSeleccionada";
-            this.pbImagenSeleccionada.Size = new System.Drawing.Size(296, 146);
-            this.pbImagenSeleccionada.TabIndex = 10;
-            this.pbImagenSeleccionada.TabStop = false;
-            // 
             // FrmJuego
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -253,8 +253,8 @@ namespace Puzzle
             ((System.ComponentModel.ISupportInitialize)(this.dgvImagen)).EndInit();
             this.pnlOpciones.ResumeLayout(false);
             this.pnlOpciones.PerformLayout();
-            this.pnlJuego.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pbImagenSeleccionada)).EndInit();
+            this.pnlJuego.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
