@@ -134,15 +134,22 @@ namespace Puzzle
             fileDialog.Filter = "Archivos de imagen|*.jpg;*.jpeg;*;*.bmp;*.svg|Archivos JPG (*.jpg;*.jpeg)|*.jpg;*.jpeg|Archivos BMP (*.bmp)|*.bmp|Archivos SVG (*.svg)|*.svg";
             img = null;
 
-            if (fileDialog.ShowDialog() == DialogResult.OK)
+            try
             {
-                ruta = fileDialog.FileName;
-            }
+                if (fileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    ruta = fileDialog.FileName;
+                }
 
-            if (!string.IsNullOrEmpty(ruta))
+                if (!string.IsNullOrEmpty(ruta))
+                {
+                    img = Image.FromStream(new FileStream(ruta, FileMode.Open, FileAccess.Read));
+                    pbImagenSeleccionada.BackgroundImage = img;
+                }
+            }
+            catch(Exception ex)
             {
-                img = Image.FromStream(new FileStream(ruta, FileMode.Open, FileAccess.Read));
-                pbImagenSeleccionada.BackgroundImage = img;
+                MessageBox.Show("Error al seleccionar la imágen", "Puzzle", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

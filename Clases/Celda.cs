@@ -9,13 +9,15 @@ namespace Puzzle
 {
     class Celda
     {
-        public int Indice { get; set; }
-        public Image Img { get; set; }
+        private int indice;
+        private Image img;
+        public int Indice { get { return indice; } }
+        public Image Img { get { return img; } }
 
         public Celda(int indice, Image img)
         {
-            this.Indice = indice;
-            this.Img = img;
+            this.indice = indice;
+            this.img = img;
         }
     }
 }

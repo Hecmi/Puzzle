@@ -28,7 +28,7 @@ namespace Puzzle
             partida_finalizada = false;
 
             generar_partida(img);
-            mezclar_celdas();
+            //mezclar_celdas();
         }
 
         private void generar_partida(Image img)
@@ -75,9 +75,7 @@ namespace Puzzle
             g.DrawRectangle(new Pen(Color.Black, 2), borde);
 
             //Redefinir los valores de la última celda 
-            Celda celda_control = celdas[dimension - 1, dimension - 1];
-            celda_control.Img = bm;
-            celda_control.Indice = -1;
+            celdas[dimension - 1, dimension - 1] = new Celda(-1, bm);
         }
 
         private bool intercambiar(int x1, int y1, int x2, int y2)
